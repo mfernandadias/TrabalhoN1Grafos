@@ -8,15 +8,17 @@ public class Grafo {
     //atributos
     //por que os atributos são private
     private Aresta[][] matrizAdjacencia; // Matriz de adjacência
-    private List<Vertice> vertices; // Lista de vértices
-    private boolean dirigido; // Indica se é dígrafo (dirigido)
+
+    private List<Vertice> vertices; // Lista de vértices (capitais)
+
+    //private boolean dirigido; // Indica se é dígrafo (dirigido)
     //por que utilizar o atributos boolean dirigido
 
     //contrutor
-    public Grafo(int numVertices, boolean dirigido) {
+    public Grafo(int numVertices) {
         matrizAdjacencia = new Aresta[numVertices][numVertices];
         vertices = new ArrayList<>();
-        this.dirigido = dirigido;
+        //this.dirigido = dirigido;
     }
 
     // Adicionar um vértice
@@ -56,7 +58,7 @@ public class Grafo {
 
     // Listar dados do grafo
     public void listarDadosGrafo() {
-        System.out.println("O grafo é " + (dirigido ? "dirigido (dígrafo)" : "não dirigido"));
+        //System.out.println("O grafo é " + (dirigido ? "dirigido (dígrafo)" : "não dirigido"));
         System.out.println("O grafo é " + (grafoValorado() ? "valorado" : "não valorado"));
         System.out.println("O grafo " + (temLaco() ? "tem laço" : "não tem laço"));
         listarGrausVertices();
@@ -118,7 +120,44 @@ public class Grafo {
     }
 
     //mostrar a viagem de avião mais acessível
-    public void viagemAviaMaisAcessível(){
+   /* public void viagemAviaMaisAcessível(){
 
+    } */
+    public class Viagem {
+        private String origem;
+        private String destino;
+        private int preco;
+        // ... outros atributos se necessário
+    }
+
+    public Viagem viagemAviaoMaisAcessivel() {
+        Viagem viagemMaisBarata = null;
+
+        for (int i = 0; i < matrizAdjacencia.length; i++) {
+            for (int j = 0; j < matrizAdjacencia[i].length; j++) {
+                Aresta aresta = matrizAdjacencia[i][j];
+                if (aresta != null && aresta.getTransporte().containsKey("Avião")) {
+                    int precoAviao = aresta.getTransporte().get("Avião");
+                    Viagem viagem = new Viagem(vertices.get(i).getNome(), vertices.get(j).getNome(), precoAviao);
+                    if (viagemMaisBarata == null || viagem.getPreco() < viagemMaisBarata.getPreco()) {
+                        viagemMaisBarata = viagem;
+                    }
+                }
+            }
+        }
+        return viagemMaisBarata;
+    }
+
+    // Adicionar uma aresta com meios de transporte e preços
+    public void adicionarAresta(int origem, int destino, int distancia, String transporte, int preco) {
+        if (matrizAdjacencia[origem][destino] == null) {
+            Aresta aresta = new Aresta(origem, destino, distancia);
+            aresta.adicionarTransporte(transporte, preco);
+            matrizAdjacencia[origem][destino] = aresta;
+            matrizAdjacencia[destino][origem] = aresta; // Grafo não-direcionado
+        } else {
+            matrizAdjacencia[origem][destino].adicionarTransporte(transporte, preco);
+            matrizAdjacencia[destino][origem].adicionarTransporte(transporte, preco);
+        }
     }
 }
