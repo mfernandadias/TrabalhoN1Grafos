@@ -7,9 +7,13 @@ public class Vertice {
         this.nome = nome;
     }
 
-    //pq não tem o método set ?
+    //pq não tem o método set?
 
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

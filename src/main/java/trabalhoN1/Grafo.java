@@ -10,8 +10,7 @@ public class Grafo {
     private Aresta[][] matrizAdjacencia; // Matriz de adjacência
 
     private List<Vertice> vertices; // Lista de vértices (capitais)
-
-    //private boolean dirigido; // Indica se é dígrafo (dirigido)
+    private boolean dirigido; // Indica se é dígrafo (dirigido)
     //por que utilizar o atributos boolean dirigido
 
     //contrutor
@@ -21,25 +20,26 @@ public class Grafo {
         //this.dirigido = dirigido;
     }
 
-    // Adicionar um vértice
-    public void adicionarVertice(String nome) {
+    // Cadastrar um vértice
+    public void cadastrarVertice(String nome) {
         Vertice vertice = new Vertice(nome);
         vertices.add(vertice);
     }
 
-    // Remover um vértice
-    public void removerVertice(int indice) {
-        vertices.remove(indice);
-        for (int i = 0; i < matrizAdjacencia.length; i++) {
-            matrizAdjacencia[indice][i] = null;
-            matrizAdjacencia[i][indice] = null;
-        }
-    }
-
-    // Atualizar uma aresta
-    public void atualizarAresta(int origem, int destino, String transporte, int preco) {
-        if (matrizAdjacencia[origem][destino] != null) {
+    // Cadastrar uma aresta
+    public void cadastrarAresta(int origem, int destino, int distancia, String transporte, int preco) {
+        if (matrizAdjacencia[origem][destino] == null) {
+            Aresta aresta = new Aresta(origem, destino, distancia);
+            aresta.adicionarTransporte(transporte, preco);
+            matrizAdjacencia[origem][destino] = aresta;
+            if (!dirigido) {
+                matrizAdjacencia[destino][origem] = aresta; // Para grafos não dirigidos
+            }
+        } else {
             matrizAdjacencia[origem][destino].adicionarTransporte(transporte, preco);
+            if (!dirigido) {
+                matrizAdjacencia[destino][origem].adicionarTransporte(transporte, preco);
+            }
         }
     }
 
@@ -56,6 +56,40 @@ public class Grafo {
         return matrizAdjacencia[origem][destino];
     }
 
+    // REMOVER VERTICE
+    public void removerVertice(int indice) {
+        vertices.remove(indice);
+        for (int i = 0; i < matrizAdjacencia.length; i++) {
+            matrizAdjacencia[indice][i] = null;
+            matrizAdjacencia[i][indice] = null;
+        }
+    }
+
+    //REMOVER ARESTA
+    public void removerAresta(int origem, int destino) {
+        matrizAdjacencia[origem][destino] = null;
+        if (!dirigido) {
+            matrizAdjacencia[destino][origem] = null;
+        }
+    }
+
+    //ATUALIZAR VÉRTICE
+    public void atualizarVertice(int indice, String novoNome) {
+        if (indice >= 0 && indice < vertices.size()) {
+            vertices.get(indice).setNome(novoNome); // Corrigido
+        } else {
+            System.out.println("Índice inválido. Vértice não encontrado.");
+        }
+    }
+
+    // Atualizar uma aresta
+    public void atualizarAresta(int origem, int destino, String transporte, int preco) {
+        if (matrizAdjacencia[origem][destino] != null) {
+            matrizAdjacencia[origem][destino].adicionarTransporte(transporte, preco);
+        }
+    }
+
+    //GRAFO
     // Listar dados do grafo
     public void listarDadosGrafo() {
         //System.out.println("O grafo é " + (dirigido ? "dirigido (dígrafo)" : "não dirigido"));
@@ -98,6 +132,7 @@ public class Grafo {
             System.out.println("O vértice " + vertices.get(i).getNome() + " tem grau: " + grau);
         }
     }
+
     public void mostrarMatrizAdjacencia() {
         System.out.println("Matriz de Adjacência:");
         for (int i = 0; i < matrizAdjacencia.length; i++) {
@@ -112,6 +147,7 @@ public class Grafo {
         }
     }
 
+    //método para mostrar as Capitais
     public void mostrarCapitais() {
         System.out.println("Capitais:");
         for (int i = 0; i < vertices.size(); i++) {
@@ -119,45 +155,143 @@ public class Grafo {
         }
     }
 
-    //mostrar a viagem de avião mais acessível
-   /* public void viagemAviaMaisAcessível(){
-
-    } */
-    public class Viagem {
-        private String origem;
-        private String destino;
-        private int preco;
-        // ... outros atributos se necessário
-    }
-
-    public Viagem viagemAviaoMaisAcessivel() {
-        Viagem viagemMaisBarata = null;
+    //método para mostrar a viagem de avião mais em conta
+    public void viagemDeAviaoMaisAcessivel() {
+        int menorPreco = Integer.MAX_VALUE;
+        String origem = null, destino = null;
 
         for (int i = 0; i < matrizAdjacencia.length; i++) {
             for (int j = 0; j < matrizAdjacencia[i].length; j++) {
                 Aresta aresta = matrizAdjacencia[i][j];
                 if (aresta != null && aresta.getTransporte().containsKey("Avião")) {
                     int precoAviao = aresta.getTransporte().get("Avião");
-                    Viagem viagem = new Viagem(vertices.get(i).getNome(), vertices.get(j).getNome(), precoAviao);
-                    if (viagemMaisBarata == null || viagem.getPreco() < viagemMaisBarata.getPreco()) {
-                        viagemMaisBarata = viagem;
+                    if (precoAviao < menorPreco) {
+                        menorPreco = precoAviao;
+                        origem = vertices.get(i).getNome();
+                        destino = vertices.get(j).getNome();
                     }
                 }
             }
         }
-        return viagemMaisBarata;
+        if (origem != null && destino != null) {
+            System.out.println("Viagem de avião mais acessível:");
+            System.out.println(origem + " -> " + destino + " por R$" + menorPreco);
+        } else {
+            System.out.println("Nenhuma viagem de avião disponível.");
+        }
     }
 
-    // Adicionar uma aresta com meios de transporte e preços
-    public void adicionarAresta(int origem, int destino, int distancia, String transporte, int preco) {
-        if (matrizAdjacencia[origem][destino] == null) {
-            Aresta aresta = new Aresta(origem, destino, distancia);
-            aresta.adicionarTransporte(transporte, preco);
-            matrizAdjacencia[origem][destino] = aresta;
-            matrizAdjacencia[destino][origem] = aresta; // Grafo não-direcionado
-        } else {
-            matrizAdjacencia[origem][destino].adicionarTransporte(transporte, preco);
-            matrizAdjacencia[destino][origem].adicionarTransporte(transporte, preco);
+
+    //Métod para mostrar a viagem de avião mais acessivel
+    public void viagemOnibusMaisAcessivel() {
+        int menorPreco = Integer.MAX_VALUE;
+        String origem = null, destino = null;
+
+        for (int i = 0; i < matrizAdjacencia.length; i++) {
+            for (int j = 0; j < matrizAdjacencia[i].length; j++) {
+                Aresta aresta = matrizAdjacencia[i][j];
+                if (aresta != null && aresta.getTransporte().containsKey("Ônibus")) {
+                    int precoOnibus = aresta.getTransporte().get("Ônibus");
+                    if (precoOnibus < menorPreco) {
+                        menorPreco = precoOnibus;
+                        origem = vertices.get(i).getNome();
+                        destino = vertices.get(j).getNome();
+                    }
+                }
+            }
         }
+        if (origem != null && destino != null) {
+            System.out.println("Viagem de ônibus mais acessível:");
+            System.out.println(origem + " -> " + destino + " por R$" + menorPreco);
+        } else {
+            System.out.println("Nenhuma viagem de ônibus disponível.");
+        }
+    }
+
+    //método que mostra as opções de viagem entre duas capitais (Viagem direta)
+    public void mostrarOpcoesViagem(int origem, int destino) {
+        Aresta aresta = matrizAdjacencia[origem][destino];
+        if (aresta != null) {
+            System.out.println("Opções de viagem de " + vertices.get(origem).getNome() + " para " + vertices.get(destino).getNome() + ":");
+            aresta.getTransporte().forEach((transporte, preco) -> {
+                System.out.println(transporte + ": R$" + preco + ", Distância: " + aresta.getDistancia() + " km");
+            });
+        } else {
+            System.out.println("Não há opções de viagem disponíveis entre esses destinos.");
+        }
+    }
+
+    //Método que mostrar as opções de conexões entre duas capitais
+
+    public void mostrarOpcoesViagem(String origemNome, String destinoNome) {
+        int origem = -1;
+        int destino = -1;
+
+        // Encontrar o índice da cidade de origem
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).getNome().equalsIgnoreCase(origemNome)) {
+                origem = i;
+                break;
+            }
+        }
+
+        // Encontrar o índice da cidade de destino
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).getNome().equalsIgnoreCase(destinoNome)) {
+                destino = i;
+                break;
+            }
+        }
+
+        // Verificar se ambos os vértices foram encontrados
+        if (origem == -1) {
+            System.out.println("Cidade de origem não encontrada.");
+            return;
+        }
+
+        if (destino == -1) {
+            System.out.println("Cidade de destino não encontrada.");
+            return;
+        }
+
+        // Buscar a aresta e mostrar as opções de viagem
+        Aresta aresta = matrizAdjacencia[origem][destino];
+        if (aresta != null) {
+            System.out.println("Opções de viagem de " + vertices.get(origem).getNome() + " para " + vertices.get(destino).getNome() + ":");
+            aresta.getTransporte().forEach((transporte, preco) -> {
+                System.out.println(transporte + ": R$" + preco + ", Distância: " + aresta.getDistancia() + " km");
+            });
+        } else {
+            System.out.println("Não há opções de viagem disponíveis entre esses destinos.");
+        }
+    }
+
+
+    //Método que mostraViagensParaUmaCapital espeficia
+    //Vou inserir São Paulo e o código vai retornar todas as viagens que São Paulo recebe
+    public void mostrarViagensParaCapital(String nomeCapitalDestino) {
+        int indiceDestino = -1;
+
+        // Encontrar o índice da cidade de destino
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).getNome().equalsIgnoreCase(nomeCapitalDestino)) {
+                indiceDestino = i;
+                break;
+            }
+        }
+
+        if (indiceDestino == -1) {
+            System.out.println("Cidade não encontrada.");
+            return;
+        }
+
+        System.out.println("Viagens disponíveis para " + nomeCapitalDestino + ":");
+
+        boolean encontrouViagem = false;
+
+        // Percorrer todas as capitais e verificar conexões com o destino especificado
+
+
+
     }
 }
