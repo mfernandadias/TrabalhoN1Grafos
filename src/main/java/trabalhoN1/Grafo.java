@@ -284,14 +284,44 @@ public class Grafo {
             System.out.println("Cidade não encontrada.");
             return;
         }
-
         System.out.println("Viagens disponíveis para " + nomeCapitalDestino + ":");
-
         boolean encontrouViagem = false;
 
-        // Percorrer todas as capitais e verificar conexões com o destino especificado
 
+        //CASE 15
+        //listar as viagens dispoveis de uma capital
+       public void listarViagensDisponiveis(int indiceVertice) {
+           //o vértice fornecidado é válido ?
+            if(indiceVertice < 0 || indiceVertice >= vertices.size()){
+                System.out.println("Índicee de vértice Inválido");
+                return;
+            }
 
+            //exibir todas as opções conforme o vértice de embarque
+            String capitalEmbarque = vertices.get(indiceVertice).getNome();
+            System.out.println("Viagens disponíveis para embarque na capital: " + capitalEmbarque + " :");
+
+            boolean conexaoDisponivel = false;
+
+            //Iterar sobre as conexões de vértice fornecido
+            for(int j = 0; j < matrizAdjacencia[indiceVertice].length; j++){
+                Aresta aresta = matrizAdjacencia[indiceVertice][j];
+
+                if(aresta != null){
+                    conexaoDisponivel = true;
+                    String capitalDesembarque = vertices.get(j).getNome();
+                    System.out.println("Destino: " + capitalDesembarque);
+                    aresta.getTransporte().forEach((tipoTransporte, preco) -> {
+                        System.out.println("Transporte: " + tipoTransporte + " - Preço: R$" + preco);
+                    });
+                    System.out.println("----------------------------");
+                }
+            }
+            // Se não houver conexões encontradas
+            if (!conexaoDisponivel) {
+                System.out.println("Não há viagens disponíveis a partir da capital " + capitalEmbarque  + ".");
+            }
+        }
 
     }
 }

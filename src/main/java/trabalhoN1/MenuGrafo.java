@@ -5,13 +5,47 @@ import java.util.Scanner;
 public class MenuGrafo {
     public static void main(String[] args) {
 
-        Grafo grafo = new Grafo(10); //número de capitais
+        Grafo grafo = new Grafo(30); //número de capitais
 
         //adicinando capitais (vértices)
-        grafo.cadastrarVertice("Porto Alegre ");
+        grafo.cadastrarVertice("Porto Alegre");
         grafo.cadastrarVertice("Florianópolis");
         grafo.cadastrarVertice("Curitiba");
         grafo.cadastrarVertice("São Paulo");
+        grafo.cadastrarVertice("Rio de Janeiro");
+        grafo.cadastrarVertice("Belo Horizonte");
+        grafo.cadastrarVertice("Vitória");
+        grafo.cadastrarVertice("Salvador");
+        grafo.cadastrarVertice("Aracaju");
+        grafo.cadastrarVertice("Maceió");
+        grafo.cadastrarVertice("Recife");
+        grafo.cadastrarVertice("João Pessoa");
+        grafo.cadastrarVertice("Natal");
+        grafo.cadastrarVertice("Fortaleza");
+        grafo.cadastrarVertice("Teresina");
+        grafo.cadastrarVertice("São Luís");
+        grafo.cadastrarVertice("Belém");
+        grafo.cadastrarVertice("Macapá");
+        grafo.cadastrarVertice("Palmas");
+        grafo.cadastrarVertice("Manaus");
+        grafo.cadastrarVertice("Boa Vista");
+        grafo.cadastrarVertice("Rio Branco");
+        grafo.cadastrarVertice("Porto Velho");
+        grafo.cadastrarVertice("Cuiabá");
+        grafo.cadastrarVertice("Campo Grande");
+        grafo.cadastrarVertice("Goiânia");
+        grafo.cadastrarVertice("Brasília");
+
+
+
+        // Adicionando distâncias e opções de transporte
+        grafo.cadastrarAresta(0, 1, 376, "Ônibus", 150); // Porto Alegre -> Florianópolis
+        grafo.cadastrarAresta(0, 3, 1115, "Avião", 600); // Porto Alegre -> São Paulo (Avião)
+        grafo.cadastrarAresta(0, 3, 1115, "Ônibus", 300); // Porto Alegre -> São Paulo (Ônibus)
+        grafo.cadastrarAresta(1, 2, 300, "Ônibus", 120);  // Florianópolis -> Curitiba
+        grafo.cadastrarAresta(2, 3, 408, "Avião", 400);   // Curitiba -> São Paulo (Avião)
+        grafo.cadastrarAresta(2, 3, 408, "Ônibus", 180);  // Curitiba -> São Paulo (Ônibus)
+
 
         Scanner scan = new Scanner(System.in);
         //Grafo grafo = new Grafo(10);
@@ -35,9 +69,10 @@ public class MenuGrafo {
 
             System.out.println("11. Mostrar a viagem de avião mais acessível");
             System.out.println("12. Mostrar a viagem de ônibus mais acessível");
-            System.out.println("13. Deseja saber as opções de viagem para o destino: ");
+            System.out.println("13. Método que mostrar as opções de conexões entre duas capitais");
+            //Método que mostrar as opções de conexões entre duas capitais
             System.out.println("14. Todas as viagens disponivéis  para uma Capital especifica ");
-            System.out.println("15. Percorrer todas as capitais e verificar conexões com o destino especificado");
+            System.out.println("15. Todas as viagens disponiveis da Capital de embarque");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
             opcao = scan.nextInt();
@@ -157,12 +192,8 @@ public class MenuGrafo {
                     grafo.mostrarViagensParaCapital(nomeCidadeDestino);
                     break;
                 case 15:
-                    //Percorrer todas as capitais e verificar conexões com o destino especificado
+
                     System.out.println("Digite a capital da cidade de embarque: ");
-
-
-
-
 
             }
         } while(opcao != 0);
