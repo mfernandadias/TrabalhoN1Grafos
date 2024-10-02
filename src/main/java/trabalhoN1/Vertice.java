@@ -6,9 +6,11 @@ public class Vertice {
 
     //construtor
     public Vertice(String nome) {
+
         this.nome = nome;
     }
     public String getNome() { //retorna o valor do atributo
+
         return nome;
     }
     public void setNome(String nome) { //permite a alteração do valor em um segunda classe

@@ -94,7 +94,9 @@ public class TesteGrafos {
 
         grafo.listarDadosGrafo();
 
-        System.out.println("  ");
+        System.out.println(" __________________________  ");
+
+        System.out.println(" __________________________  ");
 
         grafo.mostrarMatrizAdjacencia();
 

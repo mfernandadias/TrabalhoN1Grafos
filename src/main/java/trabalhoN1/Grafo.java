@@ -86,6 +86,7 @@ public class Grafo {
         }
     }
 
+    //__________________________________________________________________________________________________________________
     //ATUALIZAR VÉRTICE
     public void atualizarVertice(int indice, String novoNome) { //atualiza o nome da Capital já existe
         if (indice >= 0 && indice < vertices.size()) {
@@ -95,6 +96,7 @@ public class Grafo {
         }
     }
 
+    //__________________________________________________________________________________________________________________
     // Atualizar uma aresta
     public void atualizarAresta(int origem, int destino, String transporte, int preco) { //
         if (matrizAdjacencia[origem][destino] != null) { //verifica se a aresta existe
@@ -102,6 +104,7 @@ public class Grafo {
         }
     }
 
+    //__________________________________________________________________________________________________________________
     //GRAFO
     // Listar dados do grafo
     //imprimi informações do grafo
@@ -135,6 +138,7 @@ public class Grafo {
         return false; //falso
     }
 
+    //__________________________________________________________________________________________________________________
     // Listar os graus dos vértices
     private void listarGrausVertices() { //para cada vértice, conta quatas arestas estão conectadas  e informa o resultado
         for (int i = 0; i < vertices.size(); i++) {
@@ -148,6 +152,7 @@ public class Grafo {
         }
     }
 
+    //__________________________________________________________________________________________________________________
     public void mostrarMatrizAdjacencia() { //imprimi a matriz de adjaçência
         //explica depois esse método
         System.out.println("Matriz de Adjacência:");
@@ -165,6 +170,7 @@ public class Grafo {
         }
     }
 
+    //__________________________________________________________________________________________________________________
     //método para mostrar as Capitais
     public void mostrarCapitais() {
         System.out.println("Capitais:");

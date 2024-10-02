@@ -45,6 +45,7 @@ public class MenuGrafo {
         grafo.cadastrarAresta(1, 2, 300, "Ônibus", 120);  // Florianópolis -> Curitiba
         grafo.cadastrarAresta(2, 3, 408, "Avião", 400);   // Curitiba -> São Paulo (Avião)
         grafo.cadastrarAresta(2, 3, 408, "Ônibus", 180);  // Curitiba -> São Paulo (Ônibus)
+
         // Porto Alegre
         grafo.cadastrarAresta(0, 1, 376, "Ônibus", 150);  // Porto Alegre -> Florianópolis (Ônibus)
         grafo.cadastrarAresta(0, 1, 376, "Avião", 250);   // Porto Alegre -> Florianópolis (Avião)
