@@ -241,6 +241,7 @@ public class MenuGrafo {
                 case 15:
                     System.out.println("Digite a capital da cidade de embarque: ");
 
+
             }
         } while(opcao != 0);
 
