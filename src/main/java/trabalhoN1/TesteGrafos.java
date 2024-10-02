@@ -6,31 +6,31 @@ public class TesteGrafos {
         Grafo grafo = new Grafo(30); //número de capitais
 
 
-        grafo.cadastrarVertice("Porto Alegre");
+        grafo.cadastrarVertice("Porto_Alegre");
         grafo.cadastrarVertice("Florianópolis");
         grafo.cadastrarVertice("Curitiba");
-        grafo.cadastrarVertice("São Paulo");
-        grafo.cadastrarVertice("Rio de Janeiro");
-        grafo.cadastrarVertice("Belo Horizonte");
+        grafo.cadastrarVertice("São_Paulo");
+        grafo.cadastrarVertice("Rio_de_Janeiro");
+        grafo.cadastrarVertice("Belo_Horizonte");
         grafo.cadastrarVertice("Vitória");
         grafo.cadastrarVertice("Salvador");
         grafo.cadastrarVertice("Aracaju");
         grafo.cadastrarVertice("Maceió");
         grafo.cadastrarVertice("Recife");
-        grafo.cadastrarVertice("João Pessoa");
+        grafo.cadastrarVertice("João_Pessoa");
         grafo.cadastrarVertice("Natal");
         grafo.cadastrarVertice("Fortaleza");
         grafo.cadastrarVertice("Teresina");
-        grafo.cadastrarVertice("São Luís");
+        grafo.cadastrarVertice("São_Luís");
         grafo.cadastrarVertice("Belém");
         grafo.cadastrarVertice("Macapá");
         grafo.cadastrarVertice("Palmas");
         grafo.cadastrarVertice("Manaus");
-        grafo.cadastrarVertice("Boa Vista");
-        grafo.cadastrarVertice("Rio Branco");
-        grafo.cadastrarVertice("Porto Velho");
+        grafo.cadastrarVertice("Boa_Vista");
+        grafo.cadastrarVertice("Rio_Branco");
+        grafo.cadastrarVertice("Porto_Velho");
         grafo.cadastrarVertice("Cuiabá");
-        grafo.cadastrarVertice("Campo Grande");
+        grafo.cadastrarVertice("Campo_Grande");
         grafo.cadastrarVertice("Goiânia");
         grafo.cadastrarVertice("Brasília");
 
@@ -44,6 +44,7 @@ public class TesteGrafos {
         grafo.cadastrarAresta(1, 2, 300, "Ônibus", 120);  // Florianópolis -> Curitiba
         grafo.cadastrarAresta(2, 3, 408, "Avião", 400);   // Curitiba -> São Paulo (Avião)
         grafo.cadastrarAresta(2, 3, 408, "Ônibus", 180);  // Curitiba -> São Paulo (Ônibus)
+
         // Porto Alegre
         grafo.cadastrarAresta(0, 1, 376, "Ônibus", 150);  // Porto Alegre -> Florianópolis (Ônibus)
         grafo.cadastrarAresta(0, 1, 376, "Avião", 250);   // Porto Alegre -> Florianópolis (Avião)

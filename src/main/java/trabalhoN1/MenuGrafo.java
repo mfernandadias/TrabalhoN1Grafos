@@ -235,24 +235,24 @@ public class MenuGrafo {
                     String destinoNome = scan.next();
                     grafo.mostrarOpcoesViagem(origem, destino);
                     break; */
-                    System.out.println("Digite o nome da cidade de origem: ");
+                    System.out.println("Digite o nome da Capital de origem: ");
                     scan.nextLine(); //limpa o buffer de entrada
                     String origemNome = scan.nextLine();
 
-                    System.out.println("Digite o nome da cidade de destino: ");
+                    System.out.println("Digite o nome da Capital de destino: ");
                     String destinoNome = scan.nextLine();
 
                     //encontrar o índice da capital de origem
                     int origemIndice = grafo.buscarIndiceVertice(origemNome);
                     if(origemIndice == -1){
-                        System.out.println("Cidade de origem não encontrada.");
+                        System.out.println("Capital de origem não encontrada ou viagem indisponível");
                         break;
                     }
 
                     //encontrr a capital de destino
                     int destinoIndice = grafo.buscarIndiceVertice(destinoNome);
                     if(destinoIndice == -1){
-                        System.out.println("Cidade de destino não encontrada");
+                        System.out.println("Capital de destino não encontrada ou viagem indisponível");
                         break;
                     }
 
@@ -281,7 +281,7 @@ public class MenuGrafo {
 
                     int indiceVertice = grafo.buscarIndiceVertice(capitalEmbarque);
                     if (indiceVertice == -1) {
-                        System.out.println("Capital não encontrada.");
+                        System.out.println("Não existe viagem para essa capital");
                     } else {
                         // Listar todas as viagens a partir da capital de embarque
                         grafo.listarViagensDisponiveis(indiceVertice);
