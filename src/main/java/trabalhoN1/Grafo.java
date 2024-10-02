@@ -153,8 +153,10 @@ public class Grafo {
         System.out.println("Matriz de Adjacência:");
         for (int i = 0; i < matrizAdjacencia.length; i++) {
             for (int j = 0; j < matrizAdjacencia[i].length; j++) {
+                //verifique se existe uma aresta entre os vértice i e j
                 if (matrizAdjacencia[i][j] != null) {
-                    System.out.print(matrizAdjacencia[i][j].getDistancia() + "\t");
+                    //System.out.print(matrizAdjacencia[i][j].getDistancia() + "1\t");
+                    System.out.println("1\t");
                 } else {
                     System.out.print("0\t");
                 }
