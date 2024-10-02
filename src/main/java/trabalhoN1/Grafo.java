@@ -17,20 +17,22 @@ public class Grafo {
     //somente retorna o valor true ou false
     private boolean dirigido; // Indica se é dígrafo (dirigido)
 
-
+    //__________________________________________________________________________________________________________________
     //Contrutor
     public Grafo(int numVertices) {
         matrizAdjacencia = new Aresta[numVertices][numVertices]; //construi uma matriz bidimensional de Aresta
         vertices = new ArrayList<>();
-       // this.dirigido = dirigido; //
+        // this.dirigido = dirigido; //
     }
 
+    //__________________________________________________________________________________________________________________
     // Cadastrar um vértice
     public void cadastrarVertice(String nome) {
         Vertice vertice = new Vertice(nome); //cria uma nova Capital com o nome fornecido
         vertices.add(vertice); //adiciona a lista o nome do vértice
     }
 
+    //__________________________________________________________________________________________________________________
     // Cadastrar uma aresta
     public void cadastrarAresta(int origem, int destino, int distancia, String transporte, int preco) {
         //verifica se existe uma aresta
@@ -49,6 +51,8 @@ public class Grafo {
         }
     }
 
+    //__________________________________________________________________________________________________________________
+
     // Consultar vértice
     public Vertice consultarVertice(int indice) {
         if (indice >= 0 && indice < vertices.size()) {
@@ -57,11 +61,13 @@ public class Grafo {
         return null;
     }
 
+    //__________________________________________________________________________________________________________________
     // Consultar aresta
     public Aresta consultarAresta(int origem, int destino) {
         return matrizAdjacencia[origem][destino]; //acessa a matriz adjacênncia e retorna a aresta que conecta os vertices
     }
 
+    //__________________________________________________________________________________________________________________
     // REMOVER VERTICE
     //remove um vértice do grafo e apaga todas as suas arestas associadas
     public void removerVertice(int indice) {
@@ -195,8 +201,8 @@ public class Grafo {
         }
     }
 
-
-    //Métod para mostrar a viagem de Onibus mais acessivel
+    //_________________________________________________________________________________________________________________________
+    //Métod para mostrar a viagem de Onibus mais acessivel_______________________________________________________________
     public void viagemOnibusMaisAcessivel() {
         int menorPreco = Integer.MAX_VALUE;
         String origem = null, destino = null;
@@ -237,7 +243,7 @@ public class Grafo {
 
     //Método que mostrar as opções de conexões entre duas capitais
 
-    public void mostrarOpcoesViagem(String origemNome, String destinoNome) {
+    /*public void mostrarOpcoesViagem(String origemNome, String destinoNome) {
         int origem = -1;
         int destino = -1;
 
@@ -274,12 +280,12 @@ public class Grafo {
         } else {
             System.out.println("Não há opções de viagem disponíveis entre esses destinos.");
         }
-    }
+    } */
 
 
     //Método que mostraViagensParaUmaCapital espeficia
     //Vou inserir São Paulo e o código vai retornar todas as viagens que São Paulo recebe
-    public void mostrarViagensParaCapital(String nomeCapitalDestino) {
+    public boolean mostrarViagensParaCapital(String nomeCapitalDestino) {
         int indiceDestino = -1;
 
         // Encontrar o índice da cidade de destino
@@ -291,7 +297,7 @@ public class Grafo {
         }
         if (indiceDestino == -1) { //verifica se a capital foi encontrada
             System.out.println("Cidade não encontrada.");
-            return;
+            return false; //cidade não encontrada
         }
 
         // Imprime a lista de viagens disponíveis para a capital específica
@@ -312,10 +318,12 @@ public class Grafo {
             }
         }
 
-        if (!encontrouViagem) {
+        /*if (!encontrouViagem) {
             System.out.println("Nenhuma viagem encontrada para " + nomeCapitalDestino);
-        }
+        } */
+        return encontrouViagem; //retorna true se encontrou viagens
     }
+
 
 
         //CASE 15
@@ -352,6 +360,14 @@ public class Grafo {
                 System.out.println("Não há viagens disponíveis a partir da capital " + capitalEmbarque  + ".");
             }
         }
+        public int buscarIndiceVertice(String nome) {
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).getNome().equalsIgnoreCase(nome)) {
+                return i; // Retorna o índice do vértice
+            }
+        }
+        return -1; // Se não encontrar, retorna -1
+    }
 
 
 }

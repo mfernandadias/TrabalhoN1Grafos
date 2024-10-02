@@ -221,29 +221,75 @@ public class MenuGrafo {
                 case 11:
                     //viagem de Avião mais acessivel
                     grafo.viagemDeAviaoMaisAcessivel();
+                    break;
                 case 12:
                     //viagem de ônibus mais acessivel
                     grafo.viagemOnibusMaisAcessivel();
+                    break;
                 case 13:
                     //Método que mostrar as opções de conexões entre duas capitais
-                    System.out.print("Digite o nome da cidade de origem: ");
+                    /*System.out.print("Digite o nome da cidade de origem: ");
                     String origemNome = scan.next();
                     System.out.print("Digite o nome da cidade de destino: ");
                     String destinoNome = scan.next();
-                    grafo.mostrarOpcoesViagem(origemNome, destinoNome);
+                    grafo.mostrarOpcoesViagem(origem, destino);
+                    break; */
+                    System.out.println("Digite o nome da cidade de origem: ");
+                    scan.nextLine(); //limpa o buffer de entrada
+                    String origemNome = scan.nextLine();
+
+                    System.out.println("Digite o nome da cidade de destino: ");
+                    String destinoNome = scan.nextLine();
+
+                    //encontrar o índice da capital de origem
+                    int origemIndice = grafo.buscarIndiceVertice(origemNome);
+                    if(origemIndice == -1){
+                        System.out.println("Cidade de origem não encontrada.");
+                        break;
+                    }
+
+                    //encontrr a capital de destino
+                    int destinoIndice = grafo.buscarIndiceVertice(destinoNome);
+                    if(destinoIndice == -1){
+                        System.out.println("Cidade de destino não encontrada");
+                        break;
+                    }
+
+                    //método mostrar opções de viagem
+                    grafo.mostrarOpcoesViagem(origemIndice, destinoIndice);
                     break;
+
                 case 14:
                     //
                     System.out.println("Digite o nome da cidade de destino: ");
-                    String nomeCidadeDestino = scan.next();
-                    grafo.mostrarViagensParaCapital(nomeCidadeDestino);
+                    scan.nextLine();
+                    String nomeCapitalDestino = scan.nextLine(); //.trim(); //captura a linha inteiro e remove
+                    boolean encontrouViagem = grafo.mostrarViagensParaCapital(nomeCapitalDestino);
+                    //rafo.mostrarViagensParaCapital(nomeCapitalDestino);
+
+                    //verifique se não encontrou nenhuma viagem
+                    if(!encontrouViagem){
+                        System.out.println("Nenhuma viagem encontrada para " + nomeCapitalDestino + ". " );
+                    }
                     break;
+
                 case 15:
                     System.out.println("Digite a capital da cidade de embarque: ");
+                    scan.nextLine();
+                    String capitalEmbarque = scan.nextLine();
 
+                    int indiceVertice = grafo.buscarIndiceVertice(capitalEmbarque);
+                    if (indiceVertice == -1) {
+                        System.out.println("Capital não encontrada.");
+                    } else {
+                        // Listar todas as viagens a partir da capital de embarque
+                        grafo.listarViagensDisponiveis(indiceVertice);
+                    }
+                    break;
 
             }
         } while(opcao != 0);
+
 
         scan.close(); //fechar o Scanner no final
 
