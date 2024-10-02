@@ -34,9 +34,11 @@ public class Grafo {
 
     //__________________________________________________________________________________________________________________
     // Cadastrar uma aresta
+
     public void cadastrarAresta(int origem, int destino, int distancia, String transporte, int preco) {
         //verifica se existe uma aresta
         if (matrizAdjacencia[origem][destino] == null) {
+            //registrar novo aresta
             Aresta aresta = new Aresta(origem, destino, distancia);  //registra nova aresta
             aresta.adicionarTransporte(transporte, preco); //chama o método adicionar transporte, que esta na Classe Aresta
             matrizAdjacencia[origem][destino] = aresta; //nova aresta é registrada na matriz adjacente
@@ -153,6 +155,7 @@ public class Grafo {
     }
 
     //__________________________________________________________________________________________________________________
+
     public void mostrarMatrizAdjacencia() { //imprimi a matriz de adjaçência
         //explica depois esse método
         System.out.println("Matriz de Adjacência:");
@@ -161,7 +164,7 @@ public class Grafo {
                 //verifique se existe uma aresta entre os vértice i e j
                 if (matrizAdjacencia[i][j] != null) {
                     //System.out.print(matrizAdjacencia[i][j].getDistancia() + "1\t");
-                    System.out.println("1\t");
+                    System.out.print("1\t");
                 } else {
                     System.out.print("0\t");
                 }

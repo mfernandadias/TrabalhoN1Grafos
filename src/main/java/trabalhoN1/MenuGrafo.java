@@ -118,7 +118,7 @@ public class MenuGrafo {
 
             System.out.println("11. Mostrar a viagem de avião mais acessível");
             System.out.println("12. Mostrar a viagem de ônibus mais acessível");
-            System.out.println("13. Método que mostrar as opções de conexões entre duas capitais");
+            System.out.println("13. Mostrar as viagens disponivéis entre duas Capitais");
             System.out.println("14. Todas as viagens disponivéis  para uma Capital especifica ");
             System.out.println("15. Todas as viagens disponiveis na Capital de embarque");
             System.out.println("0. Sair");
