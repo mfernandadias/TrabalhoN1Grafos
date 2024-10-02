@@ -6,10 +6,33 @@ public class TesteGrafos {
         Grafo grafo = new Grafo(30); //número de capitais
 
 
-        grafo.cadastrarVertice("Porto Alegre ");
+        grafo.cadastrarVertice("Porto Alegre");
         grafo.cadastrarVertice("Florianópolis");
         grafo.cadastrarVertice("Curitiba");
         grafo.cadastrarVertice("São Paulo");
+        grafo.cadastrarVertice("Rio de Janeiro");
+        grafo.cadastrarVertice("Belo Horizonte");
+        grafo.cadastrarVertice("Vitória");
+        grafo.cadastrarVertice("Salvador");
+        grafo.cadastrarVertice("Aracaju");
+        grafo.cadastrarVertice("Maceió");
+        grafo.cadastrarVertice("Recife");
+        grafo.cadastrarVertice("João Pessoa");
+        grafo.cadastrarVertice("Natal");
+        grafo.cadastrarVertice("Fortaleza");
+        grafo.cadastrarVertice("Teresina");
+        grafo.cadastrarVertice("São Luís");
+        grafo.cadastrarVertice("Belém");
+        grafo.cadastrarVertice("Macapá");
+        grafo.cadastrarVertice("Palmas");
+        grafo.cadastrarVertice("Manaus");
+        grafo.cadastrarVertice("Boa Vista");
+        grafo.cadastrarVertice("Rio Branco");
+        grafo.cadastrarVertice("Porto Velho");
+        grafo.cadastrarVertice("Cuiabá");
+        grafo.cadastrarVertice("Campo Grande");
+        grafo.cadastrarVertice("Goiânia");
+        grafo.cadastrarVertice("Brasília");
 
         grafo.mostrarCapitais();
 

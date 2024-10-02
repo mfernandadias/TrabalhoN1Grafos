@@ -22,7 +22,7 @@ public class Grafo {
     public Grafo(int numVertices) {
         matrizAdjacencia = new Aresta[numVertices][numVertices]; //construi uma matriz bidimensional de Aresta
         vertices = new ArrayList<>();
-        // this.dirigido = dirigido; //
+        this.dirigido = true; //
     }
 
     //__________________________________________________________________________________________________________________
