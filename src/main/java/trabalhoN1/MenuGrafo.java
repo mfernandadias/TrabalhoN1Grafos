@@ -139,21 +139,20 @@ public class MenuGrafo {
                     grafo.mostrarCapitais();
                     System.out.print("Digite o índice do vértice de origem: ");
                     int origem = scan.nextInt();
+                    scan.nextLine(); // Limpa o buffer de entrada
                     System.out.print("Digite o índice do vértice de destino: ");
                     int destino = scan.nextInt();
+                    scan.nextLine(); // Limpa o buffer de entrada
                     System.out.print("Digite a distância entre as capitais: ");
                     int distancia = scan.nextInt();
+                    scan.nextLine(); // Limpa o buffer de entrada
                     System.out.print("Digite o tipo de transporte (Ônibus, Avião): ");
-                    String transporte = scan.next();
+                    String transporte = scan.nextLine(); // Captura o tipo de transporte
                     System.out.print("Digite o preço do transporte: ");
                     int preco = scan.nextInt();
+                    scan.nextLine(); // Limpa o buffer de entrada
+
                     grafo.cadastrarAresta(origem, destino, distancia, transporte, preco);
-                    int Origem = scan.nextInt();
-                    System.out.println("Digite o índice do vértice de destino: ");
-                    int Destino = scan.nextInt();
-                    System.out.println("Digite o peso da aresta: ");
-                    int peso = scan.nextInt();
-                    //grafo.adicionarAresta;
                     break;
                 case 4:
                     System.out.print("Digite o índice do vértice a consultar: ");
