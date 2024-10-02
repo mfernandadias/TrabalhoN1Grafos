@@ -8,13 +8,10 @@ public class Vertice {
     public Vertice(String nome) {
         this.nome = nome;
     }
-
-
     public String getNome() { //retorna o valor do atributo
         return nome;
     }
-
-    public void setNome(String nome) { //permite a auteração do valor em um segunda classe
+    public void setNome(String nome) { //permite a alteração do valor em um segunda classe
         this.nome = nome;
     }
 }

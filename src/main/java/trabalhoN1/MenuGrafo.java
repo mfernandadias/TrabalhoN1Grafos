@@ -92,8 +92,6 @@ public class MenuGrafo {
         grafo.cadastrarAresta(5, 8, 2000, "Avião", 700);     // Brasília -> Manaus (Avião)
         grafo.cadastrarAresta(8, 7, 3000, "Avião", 900);     // Manaus -> Belo Horizonte (Avião)
 
-
-
         Scanner scan = new Scanner(System.in);
         //Grafo grafo = new Grafo(10);
         int opcao;
