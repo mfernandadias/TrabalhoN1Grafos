@@ -3,7 +3,7 @@ package trabalhoN1;
 public class TesteGrafos {
     public static void main(String[] args){
 
-        Grafo grafo = new Grafo(10); //número de capitais
+        Grafo grafo = new Grafo(30); //número de capitais
 
 
         grafo.cadastrarVertice("Porto Alegre ");

@@ -98,6 +98,9 @@ public class MenuGrafo {
 
         do {
             System.out.println("\nMenu:");
+            System.out.print("Escolha uma opção: ");
+            System.out.println("   ");
+
             System.out.println("1. Deseja consultar todas as capitais do Brasil: ");
             System.out.println("2. Cadastrar Vértice (Capital)");
             System.out.println("3. Cadastrar Aresta( )");
@@ -118,7 +121,6 @@ public class MenuGrafo {
             System.out.println("14. Todas as viagens disponivéis  para uma Capital especifica ");
             System.out.println("15. Todas as viagens disponiveis na Capital de embarque");
             System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
             System.out.println("  ");
             opcao = scan.nextInt();
 
@@ -129,7 +131,8 @@ public class MenuGrafo {
                     break;
                 case 2:
                     System.out.println("Digite o nome do vértice: ");
-                    String nomeVertice = scan.next();
+                    scan.nextLine();
+                    String nomeVertice = scan.nextLine();
                     grafo.cadastrarVertice(nomeVertice);
                     break;
                 case 3:
@@ -237,7 +240,6 @@ public class MenuGrafo {
                     grafo.mostrarViagensParaCapital(nomeCidadeDestino);
                     break;
                 case 15:
-
                     System.out.println("Digite a capital da cidade de embarque: ");
 
             }

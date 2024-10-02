@@ -22,7 +22,7 @@ public class Grafo {
     public Grafo(int numVertices) {
         matrizAdjacencia = new Aresta[numVertices][numVertices]; //construi uma matriz bidimensional de Aresta
         vertices = new ArrayList<>();
-        this.dirigido = dirigido;
+       // this.dirigido = dirigido; //
     }
 
     // Cadastrar um vértice
@@ -298,10 +298,29 @@ public class Grafo {
         System.out.println("Viagens disponíveis para " + nomeCapitalDestino + ":");
         boolean encontrouViagem = false;
 
+        // Iterar pelas conexões de outras capitais para o destino
+        for (int i = 0; i < matrizAdjacencia.length; i++) {
+            Aresta aresta = matrizAdjacencia[i][indiceDestino];
+            if (aresta != null) {
+                encontrouViagem = true;
+                String capitalOrigem = vertices.get(i).getNome();
+                System.out.println("Origem: " + capitalOrigem);
+                aresta.getTransporte().forEach((transporte, preco) -> {
+                    System.out.println("Transporte: " + transporte + " - Preço: R$" + preco);
+                });
+                System.out.println("----------------------------");
+            }
+        }
+
+        if (!encontrouViagem) {
+            System.out.println("Nenhuma viagem encontrada para " + nomeCapitalDestino);
+        }
+    }
+
 
         //CASE 15
         //listar as viagens dispoveis de uma capital
-       /*public void listarViagensDisponiveis(int indiceVertice) {
+       public void listarViagensDisponiveis(int indiceVertice) {
            //o vértice fornecidado é válido ?
             if(indiceVertice < 0 || indiceVertice >= vertices.size()){
                 System.out.println("Índicee de vértice Inválido");
@@ -332,7 +351,7 @@ public class Grafo {
             if (!conexaoDisponivel) {
                 System.out.println("Não há viagens disponíveis a partir da capital " + capitalEmbarque  + ".");
             }
-        } */
+        }
 
-    }
+
 }
