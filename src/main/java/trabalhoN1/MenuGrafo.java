@@ -118,9 +118,10 @@ public class MenuGrafo {
 
             System.out.println("11. Mostrar a viagem de avião mais acessível");
             System.out.println("12. Mostrar a viagem de ônibus mais acessível");
-            System.out.println("13. Mostrar as viagens disponivéis entre duas Capitais");
+            //System.out.println("13. Mostrar as viagens disponivéis entre duas Capitais");
             System.out.println("14. Todas as viagens disponivéis  para uma Capital especifica ");
             System.out.println("15. Todas as viagens disponiveis na Capital de embarque");
+            System.out.println("15 Busca em Profundidade");
             System.out.println("0. Sair");
             System.out.println("  ");
             opcao = scan.nextInt();
@@ -228,7 +229,7 @@ public class MenuGrafo {
                     grafo.viagemOnibusMaisAcessivel();
                     break;
                 case 13:
-                    System.out.println("Digite o nome da Capital de origem: ");
+                    /*System.out.println("Digite o nome da Capital de origem: ");
                     scan.nextLine(); //limpa o buffer de entrada
                     String origemNome = scan.nextLine();
 
@@ -250,7 +251,7 @@ public class MenuGrafo {
                     }
                     //método que mostra as opções de viagem
                     grafo.mostrarOpcoesViagem(origemNome, destinoNome);
-                    break;
+                    break; */
 
                 case 14:
                     //
@@ -258,7 +259,7 @@ public class MenuGrafo {
                     scan.nextLine();
                     String nomeCapitalDestino = scan.nextLine(); // //captura a linha inteiro e remove
                     boolean encontrouViagem = grafo.mostrarViagensParaCapital(nomeCapitalDestino);
-                    //grafo.mostrarViagensParaCapital(nomeCapitalDestino);
+                    grafo.mostrarViagensParaCapital(nomeCapitalDestino);
 
                     //verifique se não encontrou nenhuma viagem
                     if(!encontrouViagem){

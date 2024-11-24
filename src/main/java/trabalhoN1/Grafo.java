@@ -242,88 +242,6 @@ public class Grafo {
     }
 
     //__________________________________________________________________________________________________________________
-    //método que mostra as opções de viagem entre duas capitais (Viagem direta)
-    /*public void mostrarOpcoesViagem(int origem, int destino) {
-        Aresta aresta = matrizAdjacencia[origem][destino];
-        if (aresta != null) {
-            System.out.println("Opções de viagem de " + vertices.get(origem).getNome() + " para " + vertices.get(destino).getNome() + ":");
-            aresta.getTransporte().forEach((transporte, preco) -> {
-                System.out.println(transporte + ": R$" + preco + ", Distância: " + aresta.getDistancia() + " km");
-            });
-        } else {
-            System.out.println("Não há opções de viagem disponíveis entre esses destinos.");
-        }
-    } */
-
-    //Método que mostrar as opções de conexões entre duas capitais
-
-    /*public void mostrarOpcoesViagem(String origemNome, String destinoNome) {
-        int origem = -1;
-        int destino = -1;
-
-        // Encontrar o índice da cidade de origem
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).getNome().equalsIgnoreCase(origemNome)) {
-                origem = i;
-                break;
-            }
-        }
-        // Encontrar o índice da cidade de destino
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).getNome().equalsIgnoreCase(destinoNome)) {
-                destino = i;
-                break;
-            }
-        }
-        // Verificar se as cidades foram encontradas
-        if (origem == -1) {
-            System.out.println("Cidade de origem não encontrada: " + origemNome);
-            return; // Termina o método se a cidade de origem não foi encontrada
-        }
-        if (destino == -1) {
-            System.out.println("Cidade de destino não encontrada: " + destinoNome);
-            return; // Termina o método se a cidade de destino não foi encontrada
-        }
-
-        // Chamar o método para mostrar as opções de viagem usando os índices
-        mostrarOpcoesViagem(origemNome, destinoNome);
-    } */
-    public void mostrarOpcoesViagem(String origemNome, String destinoNome) {
-        int origem = -1;
-        int destino = -1;
-
-        // Encontrar o índice da cidade de origem
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).getNome().equalsIgnoreCase(origemNome)) {
-                origem = i;
-                break;
-            }
-        }
-
-        // Encontrar o índice da cidade de destino
-        for (int i = 0; i < vertices.size(); i++) {
-            if (vertices.get(i).getNome().equalsIgnoreCase(destinoNome)) {
-                destino = i;
-                break;
-            }
-        }
-
-        // Verificar se as cidades foram encontradas
-        if (origem == -1) {
-            System.out.println("Cidade de origem não encontrada: " + origemNome);
-            return; // Termina o método se a cidade de origem não foi encontrada
-        }
-        if (destino == -1) {
-            System.out.println("Cidade de destino não encontrada: " + destinoNome);
-            return; // Termina o método se a cidade de destino não foi encontrada
-        }
-
-        // Chamar o método correto para mostrar as opções de viagem usando os índices
-        mostrarOpcoesViagem(origemNome, destinoNome); // Agora passa os índices de origem e destino
-    }
-
-
-
 
 
     //Método que mostraViagensParaUmaCapital espeficia
@@ -412,6 +330,39 @@ public class Grafo {
         }
         return -1; // Se não encontrar, retorna -1
     }
+   //_____________________________________________________________________________________________________________
+    //BUSCA EM PROFUNDIDADES (DFS -  DEPTH FIRST SEARCH)
+    public void dfs(int origem, int destino){
+        boolean[] visitados = new boolean[vertices.size()];
+        List<Integer> caminho = new ArrayList<>();
+
+        if(dfsRecursivo(origem, destino, visitados, caminho)){
+            System.out.println("Caminho encontrado " + caminho);
+        } else {
+            System.out.println("Não há caminho entre os vértives " + origem + " e " + destino);
+        }
+    }
+
+    private boolean dfsRecursivo(int atual, int destino, boolean[] visitados, List<Integer> caminho){
+        visitados[atual] = true;
+        caminho.add(atual);
+
+        if (atual == destino) {
+            return true;
+        }
+
+        for (int i = 0; i < matrizAdjacencia.length; i++) {
+            if (matrizAdjacencia[atual][i] != null && !visitados[i]) {
+                if (dfsRecursivo(i, destino, visitados, caminho)) {
+                    return true;
+                }
+            }
+        }
+
+        caminho.remove(caminho.size() - 1);
+        return false;
+    }
 
 
 }
+
