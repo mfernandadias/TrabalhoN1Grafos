@@ -163,8 +163,8 @@ public class MenuGrafo {
                         System.out.println("Vértice: " + vertice.getNome());
                     } else {
                         System.out.println("Vértice não encontrado.");
+                        break;
                     }
-                    break;
                 case 5:
                     System.out.print("Digite o índice do vértice de origem: ");
                     int origemAresta = scan.nextInt();
@@ -228,18 +228,12 @@ public class MenuGrafo {
                     grafo.viagemOnibusMaisAcessivel();
                     break;
                 case 13:
-                    //Método que mostrar as opções de conexões entre duas capitais
-                    /*System.out.print("Digite o nome da cidade de origem: ");
-                    String origemNome = scan.next();
-                    System.out.print("Digite o nome da cidade de destino: ");
-                    String destinoNome = scan.next();
-                    grafo.mostrarOpcoesViagem(origem, destino);
-                    break; */
                     System.out.println("Digite o nome da Capital de origem: ");
                     scan.nextLine(); //limpa o buffer de entrada
                     String origemNome = scan.nextLine();
 
                     System.out.println("Digite o nome da Capital de destino: ");
+                    scan.nextLine();
                     String destinoNome = scan.nextLine();
 
                     //encontrar o índice da capital de origem
@@ -248,25 +242,23 @@ public class MenuGrafo {
                         System.out.println("Capital de origem não encontrada ou viagem indisponível");
                         break;
                     }
-
                     //encontrr a capital de destino
                     int destinoIndice = grafo.buscarIndiceVertice(destinoNome);
                     if(destinoIndice == -1){
                         System.out.println("Capital de destino não encontrada ou viagem indisponível");
                         break;
                     }
-
-                    //método mostrar opções de viagem
-                    grafo.mostrarOpcoesViagem(origemIndice, destinoIndice);
+                    //método que mostra as opções de viagem
+                    grafo.mostrarOpcoesViagem(origemNome, destinoNome);
                     break;
 
                 case 14:
                     //
                     System.out.println("Digite o nome da cidade de destino: ");
                     scan.nextLine();
-                    String nomeCapitalDestino = scan.nextLine(); //.trim(); //captura a linha inteiro e remove
+                    String nomeCapitalDestino = scan.nextLine(); // //captura a linha inteiro e remove
                     boolean encontrouViagem = grafo.mostrarViagensParaCapital(nomeCapitalDestino);
-                    //rafo.mostrarViagensParaCapital(nomeCapitalDestino);
+                    //grafo.mostrarViagensParaCapital(nomeCapitalDestino);
 
                     //verifique se não encontrou nenhuma viagem
                     if(!encontrouViagem){
