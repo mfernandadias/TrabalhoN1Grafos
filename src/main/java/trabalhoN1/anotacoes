@@ -1,0 +1,8 @@
+busca em profundidade
+void visita Profundidade(Grafo* g, int atual, bool¨visitado, int anterior){
+printf("Visitado vertice: ....")
+visitado[atual] = true;
+int x;
+for(x=0; x<g->numVertices; x++)
+if(b->matriz[atual][x] && !visitado[x])
+}

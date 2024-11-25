@@ -336,6 +336,14 @@ public class Grafo {
         boolean[] visitados = new boolean[vertices.size()];
         List<Integer> caminho = new ArrayList<>();
 
+        /*
+        verificação de os índices fornacidos são validos
+        if (origem < 0 || origem >= vertices.size() || destino < 0 || destino >= vertices.size()) {
+        System.out.println("Índices inválidos. Certifique-se de que estejam entre 0 e " + (vertices.size() - 1));
+        break;
+        }
+         */
+
         if(dfsRecursivo(origem, destino, visitados, caminho)){
             System.out.println("Caminho encontrado " + caminho);
         } else {
@@ -358,10 +366,18 @@ public class Grafo {
                 }
             }
         }
-
         caminho.remove(caminho.size() - 1);
         return false;
     }
+
+    //BUSCA EM LARGURA
+
+
+    //ALGORTIMO DE DIJKSTRA __________________________________________________________________
+
+    //ALGORITMO DE FLOYD______________________________________________________________________
+
+
 
 
 }

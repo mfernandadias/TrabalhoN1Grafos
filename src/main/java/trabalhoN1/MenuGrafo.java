@@ -280,7 +280,14 @@ public class MenuGrafo {
                         grafo.listarViagensDisponiveis(indiceVertice);
                     }
                     break;
+                case 16:
+                    System.out.println("Digite o índice do vértice de origem: ");
+                    origem = scan.nextInt();
 
+                    System.out.println("Digite o índice do vértice de destino: ");
+                    destino = scan.nextInt();
+
+                    grafo.dfs(origem, destino);
             }
         } while(opcao != 0);
 
