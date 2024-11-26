@@ -1,9 +1,6 @@
 package trabalhoN1;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class Grafo {
 
@@ -21,6 +18,8 @@ public class Grafo {
 
     private List<Aresta> listaArestas;
 
+    private Map<Integer, List<Aresta>> adjacencias;
+
     //__________________________________________________________________________________________________________________
     //Contrutor
     public Grafo(int numVertices) {
@@ -30,6 +29,7 @@ public class Grafo {
         this.vertices = new ArrayList<>();//(numVertices);
         this.listaArestas = new ArrayList<>();
         this.dirigido = dirigido;
+        this.adjacencias = new HashMap<>();
 
     }
 
@@ -194,6 +194,22 @@ public class Grafo {
         }
     }
     //__________________________________________________________________________________________________________________
+    public void adicionarAresta(int origem, int destino, int distancia) {
+        Aresta aresta = new Aresta(origem, destino, distancia);
+        matrizAdjacencia[origem][destino] = aresta; // Adiciona à matriz de adjacência
+        listaArestas.add(aresta); // Adiciona à lista de arestas
+
+        // Adicionar à lista de adjacências
+        adjacencias.putIfAbsent(origem, new ArrayList<>());
+        adjacencias.get(origem).add(aresta);
+
+        if (!dirigido) { // Se o grafo for não-dirigido
+            Aresta arestaReversa = new Aresta(destino, origem, distancia);
+            matrizAdjacencia[destino][origem] = arestaReversa;
+            adjacencias.putIfAbsent(destino, new ArrayList<>());
+            adjacencias.get(destino).add(arestaReversa);
+        }
+    }
 
     public ArrayList<Aresta> arestas() {
         ArrayList<Aresta> lista = new ArrayList<>();
@@ -245,7 +261,7 @@ public class Grafo {
 
     //
     // Método dentro da classe Grafo
-    public Aresta getAresta(int origem, int destino) {
+    /*public Aresta getAresta(int origem, int destino) {
         for (Aresta aresta : listaArestas) {
             if ((aresta.getOrigem() == origem && aresta.getDestino() == destino) ||
                     (aresta.getOrigem() == destino && aresta.getDestino() == origem)) {
@@ -253,7 +269,18 @@ public class Grafo {
             }
         }
         return null;
+    } */
+    public Aresta getAresta(int origem, int destino) {
+        if (adjacencias.containsKey(origem)) {
+            for (Aresta aresta : adjacencias.get(origem)) {
+                if (aresta.getDestino() == destino) {
+                    return aresta;
+                }
+            }
+        }
+        return null; // Retorna null se não encontrar a aresta
     }
+
 
     //__________________________________________________________________________________________________________________
     //método para mostrar as Capitais

@@ -119,9 +119,11 @@ public class MenuGrafo {
             System.out.println("11. Mostrar a viagem de avião mais acessível");
             System.out.println("12. Mostrar a viagem de ônibus mais acessível");
             //System.out.println("13. Mostrar as viagens disponivéis entre duas Capitais");
-            System.out.println("14. Todas as viagens disponivéis  para uma Capital especifica ");
-            System.out.println("15. Todas as viagens disponiveis na Capital de embarque");
+            System.out.println("13. Todas as viagens disponivéis  para uma Capital especifica ");
+            System.out.println("14. Todas as viagens disponiveis na Capital de embarque");
             System.out.println("15 Busca em Profundidade");
+            System.out.println("16 Busca em Largura");
+            System.out.println("17 Algoritmo de dijkstra");
             System.out.println("0. Sair");
             System.out.println("  ");
             opcao = scan.nextInt();
@@ -228,7 +230,7 @@ public class MenuGrafo {
                     //viagem de ônibus mais acessivel
                     grafo.viagemOnibusMaisAcessivel();
                     break;
-                case 13:
+               // case 13:
                     /*System.out.println("Digite o nome da Capital de origem: ");
                     scan.nextLine(); //limpa o buffer de entrada
                     String origemNome = scan.nextLine();
@@ -253,7 +255,7 @@ public class MenuGrafo {
                     grafo.mostrarOpcoesViagem(origemNome, destinoNome);
                     break; */
 
-                case 14:
+                case 13:
                     //
                     System.out.println("Digite o nome da cidade de destino: ");
                     scan.nextLine();
@@ -267,7 +269,7 @@ public class MenuGrafo {
                     }
                     break;
 
-                case 15:
+                case 14:
                     System.out.println("Digite a capital da cidade de embarque: ");
                     scan.nextLine();
                     String capitalEmbarque = scan.nextLine();
@@ -280,7 +282,8 @@ public class MenuGrafo {
                         grafo.listarViagensDisponiveis(indiceVertice);
                     }
                     break;
-                case 16:
+                case 15:
+                    System.out.println("Busca em profundidade");
                     System.out.println("Digite o índice do vértice de origem: ");
                     origem = scan.nextInt();
 
@@ -288,7 +291,8 @@ public class MenuGrafo {
                     destino = scan.nextInt();
 
                     grafo.dfs(origem, destino);
-                case 17:
+                    break;
+                case 16:
                     System.out.println("Busca de Largura");
                     System.out.println("Digite o índice de origem");
                     origem = scan.nextInt();
@@ -297,8 +301,19 @@ public class MenuGrafo {
                     destino = scan.nextInt();
 
                     grafo.buscaEmLargura(origem, destino);
-                case 18:
+                    break;
+                case 17:
                     System.out.println("Algoritmo de Dijkstra");
+                    grafo.mostrarCapitais();
+
+                    System.out.print("Digite o índice do vértice de origem: ");
+                    int indiceOrigemDijkstra = scan.nextInt();
+                    System.out.print("Digite o índice do vértice de destino: ");
+                    int indiceDestinoDijkstra = scan.nextInt();
+
+                    Dijkstra.encontrarMenorCaminho(grafo, indiceOrigemDijkstra, indiceDestinoDijkstra);
+                    break;
+
 
             }
         } while(opcao != 0);
