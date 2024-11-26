@@ -14,10 +14,12 @@ public class Grafo {
 
     // variável vertice de tipo lista
     //cada vertice representa um No dentro do grafo
-    private List<Vertice> vertices; // Lista de vértices (capitais)
+    private  List<Vertice> vertices; // Lista de vértices (capitais)
 
     //somente retorna o valor true ou false
     private boolean dirigido; // Indica se é dígrafo (dirigido)
+
+    private List<Aresta> listaArestas;
 
     //__________________________________________________________________________________________________________________
     //Contrutor
@@ -25,7 +27,23 @@ public class Grafo {
         matrizAdjacencia = new Aresta[numVertices][numVertices]; //construi uma matriz bidimensional de Aresta
         vertices = new ArrayList<>();
         this.dirigido = true; //
+        this.vertices = new ArrayList<>();//(numVertices);
+        this.listaArestas = new ArrayList<>();
+        this.dirigido = dirigido;
+
     }
+
+    // Método para retornar a lista de vértices
+    public List<Vertice> getVertices() {
+        return vertices;
+    }
+
+    // Método para adicionar um vértice ao grafo
+    public void addVertice(Vertice vertice) {
+        vertices.add(vertice);
+    }
+
+
 
     //__________________________________________________________________________________________________________________
     // Cadastrar um vértice
@@ -174,6 +192,67 @@ public class Grafo {
             }
             System.out.println();
         }
+    }
+    //__________________________________________________________________________________________________________________
+
+    public ArrayList<Aresta> arestas() {
+        ArrayList<Aresta> lista = new ArrayList<>();
+
+        // Verifique se a matriz de adjacência está corretamente inicializada
+        if (matrizAdjacencia == null) {
+            System.out.println("A matriz de adjacência não foi inicializada.");
+            return lista;
+        }
+
+        // Percorra a matriz de adjacência para coletar todas as arestas
+        for (int i = 0; i < matrizAdjacencia.length; i++) {
+            for (int j = 0; j < matrizAdjacencia[i].length; j++) {
+                // Verifique se existe uma aresta entre os vértices i e j
+                Aresta a = matrizAdjacencia[i][j];
+                if (a != null) {
+                    lista.add(a); // Adicione a aresta à lista
+                }
+            }
+        }
+        return lista;
+    }
+    //método retorna o índice de um vértice
+    public int getIndiceVertice(String nome) {
+        for (int i = 0; i < vertices.size(); i++) {
+            if (vertices.get(i).getNome().equals(nome)) {
+                return i;
+            }
+        }
+        throw new IllegalArgumentException("Vértice não encontrado: " + nome);
+    }
+    //método retorna o objeto vertice pelo indice
+    public Vertice getVertice(int indice) {
+        if (indice >= 0 && indice < vertices.size()) {
+            return vertices.get(indice);
+        }
+        throw new IndexOutOfBoundsException("Índice inválido: " + indice);
+    }
+
+    //getVertices (string nome)
+    public Vertice getVertice(String nome) {
+        for (Vertice v : vertices) {
+            if (v.getNome().equals(nome)) {
+                return v;
+            }
+        }
+        throw new IllegalArgumentException("Vértice não encontrado: " + nome);
+    }
+
+    //
+    // Método dentro da classe Grafo
+    public Aresta getAresta(int origem, int destino) {
+        for (Aresta aresta : listaArestas) {
+            if ((aresta.getOrigem() == origem && aresta.getDestino() == destino) ||
+                    (aresta.getOrigem() == destino && aresta.getDestino() == origem)) {
+                return aresta;
+            }
+        }
+        return null;
     }
 
     //__________________________________________________________________________________________________________________
@@ -409,6 +488,7 @@ public class Grafo {
         }
 
     }
+
 
     //ALGORTIMO DE DIJKSTRA __________________________________________________________________
 

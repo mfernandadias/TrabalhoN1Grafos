@@ -33,11 +33,11 @@ public class Aresta{
         this.origem = origem;           //aresta.setOrigem(5); define a origem como 5
     }
 
-    public int getDistino() {  //
+    public int getDestino() {  //
         return destino;
     }
 
-    public void setDistino(int destino) {
+    public void setDestino(int destino) {
         this.destino = destino;
     }
 
