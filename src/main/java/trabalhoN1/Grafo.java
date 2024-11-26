@@ -184,7 +184,7 @@ public class Grafo {
             for (int j = 0; j < matrizAdjacencia[i].length; j++) {
                 //verifique se existe uma aresta entre os vértice i e j
                 if (matrizAdjacencia[i][j] != null) {
-                    //System.out.print(matrizAdjacencia[i][j].getDistancia() + "1\t");
+                    System.out.print(matrizAdjacencia[i][j].getDistancia() + "1\t");
                     System.out.print("1\t");
                 } else {
                     System.out.print("0\t");
@@ -270,7 +270,7 @@ public class Grafo {
         }
         return null;
     } */
-    public Aresta getAresta(int origem, int destino) {
+    /*public Aresta getAresta(int origem, int destino) {
         if (adjacencias.containsKey(origem)) {
             for (Aresta aresta : adjacencias.get(origem)) {
                 if (aresta.getDestino() == destino) {
@@ -278,8 +278,22 @@ public class Grafo {
                 }
             }
         }
-        return null; // Retorna null se não encontrar a aresta
+       // return null; // Retorna null se não encontrar a aresta
+        return matrizAdjacencia[origem][destino];
+    } */
+    public Aresta getAresta(int origem, int destino) {
+        if (adjacencias.containsKey(origem)) {
+            for (Aresta aresta : adjacencias.get(origem)) {
+                if (aresta.getDestino() == destino) {
+                    System.out.println("Aresta encontrada: " + origem + " -> " + destino + ", distância: " + aresta.getDistancia());
+                    return aresta;
+                }
+            }
+        }
+        System.out.println("Aresta não encontrada: " + origem + " -> " + destino);
+        return null;
     }
+
 
 
     //__________________________________________________________________________________________________________________

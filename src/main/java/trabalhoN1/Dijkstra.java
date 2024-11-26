@@ -23,10 +23,6 @@ public class Dijkstra {
     o usuário vai inserir os indices
 
      */
-
-
-    //public class Dijkstra {
-
         public static void encontrarMenorCaminho(Grafo grafo, int indiceOrigem, int indiceDestino) {
             if (indiceOrigem < 0 || indiceOrigem >= grafo.getVertices().size() ||
                     indiceDestino < 0 || indiceDestino >= grafo.getVertices().size()) {
