@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Dijkstra {
     /*
-    meu algoritmo Dijkstra necessita receber uma indiceOrigem e indiceDestino
-    primeiro precisa ser validos que esses indices existem
+    algoritmo Dijkstra necessita receber uma indiceOrigem e indiceDestino
+    primeiro preciso confirmar que são  validos e que esses indices existem
     int validados
     o algoritmo vai chegar no inteiro e percorrer seu vizinho
     vai guardar sua menor distancia
