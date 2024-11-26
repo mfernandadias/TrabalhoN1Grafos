@@ -1,7 +1,9 @@
 package trabalhoN1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class Grafo {
 
@@ -337,11 +339,11 @@ public class Grafo {
         List<Integer> caminho = new ArrayList<>();
 
 
-        //verificação de os índices fornacidos são validos
+        /*//verificação de os índices fornacidos são validos
         if (origem < 0 || origem >= vertices.size() || destino < 0 || destino >= vertices.size()) {
         System.out.println("Índices inválidos. Certifique-se de que estejam entre 0 e " + (vertices.size() - 1));
-        break;
-        }
+        //break;
+        } */
 
 
         if(dfsRecursivo(origem, destino, visitados, caminho)){
@@ -371,9 +373,45 @@ public class Grafo {
     }
 
     //BUSCA EM LARGURA
+    //método paar realizar a busca em largura
+    public void buscaEmLargura(int origem, int destino){
+        boolean[] visitados = new boolean[vertices.size()];
+        Queue<List<Integer>> fila = new LinkedList<>();
 
+        //adiciona o caminho inicial contendo apenas o vértice de origem
+        List<Integer> caminhoInicial = new ArrayList<>();
+        caminhoInicial.add(origem);
+        fila.add(caminhoInicial);
+
+        while(!fila.isEmpty()){
+            //remove o próximo caminho da fila
+            List<Integer> caminhoAtual = fila.poll();
+            int ultimoVertice = caminhoAtual.get(caminhoAtual.size() - 1);
+
+            //se o destifno foi alcançado imprime o caminho e retorna
+            if(ultimoVertice == destino){
+                System.out.println("Caminho encontrado " +  caminhoAtual);
+                return;
+            }
+
+            //marca o vértice atual como visitado
+            visitados[ultimoVertice] = true;
+
+            //adiciona todos os vertices adjacentes não visitados a matriz
+            for(int i = 0; i < matrizAdjacencia.length; i++){
+                if(matrizAdjacencia[ultimoVertice][i] != null && !visitados[i]){
+                    List<Integer> novoCaminho = new ArrayList<>(caminhoAtual);
+                    novoCaminho.add(i);
+                    fila.add(novoCaminho);
+                }
+            }
+
+        }
+
+    }
 
     //ALGORTIMO DE DIJKSTRA __________________________________________________________________
+
 
     //ALGORITMO DE FLOYD______________________________________________________________________
 

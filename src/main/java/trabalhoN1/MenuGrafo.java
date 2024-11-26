@@ -288,6 +288,18 @@ public class MenuGrafo {
                     destino = scan.nextInt();
 
                     grafo.dfs(origem, destino);
+                case 17:
+                    System.out.println("Busca de Largura");
+                    System.out.println("Digite o índice de origem");
+                    origem = scan.nextInt();
+
+                    System.out.println("Digite o índice de destino");
+                    destino = scan.nextInt();
+
+                    grafo.buscaEmLargura(origem, destino);
+                case 18:
+                    System.out.println("Algoritmo de Dijkstra");
+
             }
         } while(opcao != 0);
 
