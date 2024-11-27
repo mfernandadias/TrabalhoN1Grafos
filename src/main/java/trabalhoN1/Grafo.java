@@ -535,8 +535,46 @@ public class Grafo {
 
 
     //ALGORITMO DE FLOYD______________________________________________________________________
+    // Método para rodar o algoritmo Floyd-Warshall
+    public void floydWarshall() {
+        int n = vertices.size();  // Número de vértices
 
+        // Inicializando a matriz de distâncias
+        int[][] distancias = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrizAdjacencia[i][j] != null) {
+                    distancias[i][j] = matrizAdjacencia[i][j].getDistancia();  // Aresta existe, usa a distância
+                } else {
+                    distancias[i][j] = Integer.MAX_VALUE;  // Aresta não existe, distância infinita
+                }
+            }
+        }
 
+        // Aplicando o algoritmo de Floyd-Warshall
+        for (int k = 0; k < n; k++) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (distancias[i][k] != Integer.MAX_VALUE && distancias[k][j] != Integer.MAX_VALUE) {
+                        distancias[i][j] = Math.min(distancias[i][j], distancias[i][k] + distancias[k][j]);
+                    }
+                }
+            }
+        }
+
+        // Exibindo a matriz de distâncias final
+        System.out.println("Matriz de distâncias finais:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (distancias[i][j] == Integer.MAX_VALUE) {
+                    System.out.print("INF ");  // INF indica que não há caminho
+                } else {
+                    System.out.print(distancias[i][j] + " ");
+                }
+            }
+            System.out.println();
+        }
+    }
 
 
 }
